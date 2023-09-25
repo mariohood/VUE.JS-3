@@ -67,7 +67,10 @@
     padding: 5rem;
   }
   .sombra {
-
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    background-color: var(--blanco);
+    border-radius: 1.2rem;
+    padding: 5rem;
   }
   
 
