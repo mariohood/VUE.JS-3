@@ -1,5 +1,18 @@
 <script setup>
     import imagen from '../assets/img/grafico.jpg'
+    import {formatearCantidad} from '../helpers'
+
+    const props = defineProps({
+        presupuesto: {
+            type: Number,
+            required: true
+        },
+        disponible: {
+            type: Number,
+            required: true
+        }
+    })
+
 </script>
 
 <template>
@@ -19,12 +32,12 @@
 
             <p>
                 <span>Presupuesto:</span>
-                $0
+               {{ formatearCantidad(presupuesto) }}
             </p>
 
             <p>
                 <span>Disponible:</span>
-                $0
+               {{ formatearCantidad(disponible) }}
             </p>
 
             <p>
@@ -76,9 +89,7 @@
     }
     .contenedor-presupuesto {
         width: 100%;
-
     }
-
     .contenedor-presupuesto p {
         font-size: 2.4rem;
         text-align: center;
@@ -89,10 +100,8 @@
             text-align: left;
         }
     }
-
     .contenedor-presupuesto span {
         font-weight: 900;
         color: var(--azul);
     }
-
 </style>
