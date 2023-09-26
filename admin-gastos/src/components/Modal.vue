@@ -2,6 +2,25 @@
     import cerrarModal from '../assets/img/cerrar.svg'
 
     const emit = defineEmits(['ocultar-modal'])
+    const props= defineProps({
+        modal: {
+            type: Object,
+            required: true
+        },
+        nombre: {
+            type: String,
+            required: true
+        },
+        cantidad: {
+            type: [Number, String],
+            required: true
+        },
+        categoria: {
+            type: String,
+            required: true
+        }
+
+    })
 </script>
 
 <template>
@@ -14,7 +33,8 @@
         </div>
 
         <div
-            class="contenedor"
+            class="contenedor contenedor-formulario"
+            :class="[modal.animar ? 'animar' : 'cerrar']"
         
         >
             <form
@@ -27,6 +47,7 @@
                         type="text"
                         id="nombre"
                         placeholder="Añade el Nombre del Gasto"
+                        :value="nombre"
                         />
                 </div>
 
@@ -36,6 +57,7 @@
                         type="number"
                         id="cantidad"
                         placeholder="Añade la cantidad del Gasto, ej. 300"
+                        :value="cantidad"
                         />
                 </div>
 
@@ -43,6 +65,7 @@
                     <label for="categoria">Categoria:</label>
                     <select 
                         id="categoria"
+                        :value="categoria"
                     >
                         <option value="">-- Seleccione --</option>
                         <option value="ahorro">Ahorro</option>
@@ -90,6 +113,20 @@
         
     }
 
+    .contenedor-formulario {
+        transition-property: all;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    .contenedor-formulario.animar {
+        opacity: 1;
+    }
+
+    .contenedor-formulario.cerrar {
+        opacity: 0;
+    }
     .nuevo-gasto {
         margin: 10rem auto 0 auto;
         display: grid;

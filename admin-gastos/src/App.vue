@@ -12,6 +12,14 @@
   const presupuesto = ref(0)
   const disponible = ref(0)
 
+  const gasto = reactive({
+    nombre: '',
+    cantidad: '',
+    categoria: '',
+    id: null,
+    fecha: Date.now()
+  })
+
   const definirPresupuesto = (cantidad) => {
     presupuesto.value = cantidad
     disponible.value = cantidad
@@ -19,14 +27,18 @@
 
   const mostrarModal = () => {
     modal.mostrar = true
-    modal.animar = true  
+    setTimeout(() => {
+      modal.animar = true
+    }, 300);
   }
 
   const ocultarModal = () => {
-    modal.mostrar = false
-    modal.animar = false  
+    modal.animar = false
+    setTimeout(() => {
+      modal.mostrar = false
+    }, 300);
   }
-</script>
+  </script>
 
 <template>
   <div>
@@ -58,8 +70,12 @@
       </div>
 
       <Modal
-        v-if="modal.mostrar"
-        @ocultar-modal="ocultarModal"
+          v-if="modal.mostrar"
+          @ocultar-modal="ocultarModal"
+          :modal="modal"
+          v-model:nombre="gasto.nombre"
+          v-model:cantidad="gasto.cantidad"
+          v-model:categoria="gasto.categoria"
       />
     </main>
 
